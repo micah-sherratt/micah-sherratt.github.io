@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tkinter noughts and crosses – Python code</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070d1a;--panel:#0d1628;--line:#1b2944;--text:#e8eefc;--muted:#9fb0cf;--accent:#3b9bff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:60rem;margin:0 auto;padding:2rem clamp(1rem,5vw,3rem) 4rem}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+h1{font-size:clamp(1.8rem,5vw,2.6rem);letter-spacing:-.02em;margin:1rem 0 .3rem}
+p{color:var(--muted);margin:0 0 1.5rem}
+.bar{display:flex;justify-content:space-between;align-items:center;background:var(--panel);border:1px solid var(--line);border-bottom:0;border-radius:1rem 1rem 0 0;padding:.6rem 1rem;color:var(--muted);font-size:.85rem}
+button{font:inherit;background:var(--accent);color:#04101f;border:0;border-radius:.5rem;padding:.4rem .9rem;font-weight:600;cursor:pointer}
+pre{margin:0;background:#050a14;border:1px solid var(--line);border-radius:0 0 1rem 1rem;padding:1.2rem;overflow-x:auto;font:.85rem/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#d6e2ff;tab-size:4}
+</style></head><body><div class="wrap">
+<a href="index.html">&larr; Back to portfolio</a>
+<h1>Tkinter noughts and crosses</h1>
+<p>A two-player noughts and crosses game built with Tkinter. Players take turns on a 3x3 grid, and the game announces a win or a draw.</p>
+<div class="bar"><span>tkinter_noughts_and_crosses.py</span><button id="c" type="button">Copy code</button></div>
+<pre><code id="code">import tkinter as tk
+
+w = tk.Tk()
+w.title (&quot;Noughts And Crosses&quot;)
+w.geometry(&quot;325x280&quot;)
+w1 = tk.LabelFrame(w, text=&quot;Noughts And Crosses&quot;, font=(&quot;Arial&quot;, 20, &quot;bold&quot;), fg=&quot;blue&quot;)
+w1.grid(row=1, column=0, padx=10, pady=10)
+turn = True
+count = 0
+
+def win():
+    s1 = square1.cget(&quot;text&quot;)
+    s2 = square2.cget(&quot;text&quot;)
+    s3 = square3.cget(&quot;text&quot;)
+    s4 = square4.cget(&quot;text&quot;)
+    s5 = square5.cget(&quot;text&quot;)
+    s6 = square6.cget(&quot;text&quot;)
+    s7 = square7.cget(&quot;text&quot;)
+    s8 = square8.cget(&quot;text&quot;)
+    s9 = square9.cget(&quot;text&quot;)
+    if s1 == &quot;X&quot; and s2 == &quot;X&quot; and s3 == &quot;X&quot; or s6 == &quot;X&quot; and s4 == &quot;X&quot; and s5 == &quot;X&quot; or s7 == &quot;X&quot; and s8 == &quot;X&quot; and s9 == &quot;X&quot; or s1 == &quot;X&quot; and s4 == &quot;X&quot; and s7 == &quot;X&quot; or s2 == &quot;X&quot; and s5 == &quot;X&quot; and s8 == &quot;X&quot; or s3 == &quot;X&quot; and s6 == &quot;X&quot; and s9 == &quot;X&quot; or s1 == &quot;X&quot; and s5 == &quot;X&quot; and s9 == &quot;X&quot; or s3 == &quot;X&quot; and s5 == &quot;X&quot; and s7 == &quot;X&quot; :
+        thing.config(text=&quot;X has won, good job&quot;)
+        square1.destroy()
+        square2.destroy()
+        square3.destroy()
+        square4.destroy()
+        square5.destroy()
+        square6.destroy()
+        square7.destroy()
+        square8.destroy()
+        square9.destroy()
+    elif s1 == &quot;O&quot; and s2 == &quot;O&quot; and s3 == &quot;O&quot; or s6 == &quot;O&quot; and s4 == &quot;O&quot; and s5 == &quot;O&quot; or s7 == &quot;O&quot; and s8 == &quot;O&quot; and s9 == &quot;O&quot; or s1 == &quot;O&quot; and s4 == &quot;O&quot; and s7 == &quot;O&quot; or s2 == &quot;O&quot; and s5 == &quot;O&quot; and s8 == &quot;O&quot; or s3 == &quot;O&quot; and s6 == &quot;O&quot; and s9 == &quot;O&quot; or s1 == &quot;O&quot; and s5 == &quot;O&quot; and s9 == &quot;O&quot; or s3 == &quot;O&quot; and s5 == &quot;O&quot; and s7 == &quot;O&quot; :
+        thing.config(text=&quot;O has won, good job&quot;)
+        square1.destroy()
+        square2.destroy()
+        square3.destroy()
+        square4.destroy()
+        square5.destroy()
+        square6.destroy()
+        square7.destroy()
+        square8.destroy()
+        square9.destroy()  
+
+def make_move(square):
+    global turn
+    global count
+    if square[&quot;text&quot;] != &quot; &quot;:
+        return
+    if turn:
+        square.config(text=&quot;O&quot;)
+        turn = False
+    else:
+        square.config(text=&quot;X&quot;)
+        turn = True
+    win()
+    count = count + 1
+    word = thing.cget(&quot;text&quot;)
+    if count == 9 and word == &quot;keep playing&quot; :
+        thing.config(text=&quot;draw&quot;)
+        
+
+square1 = tk.Button(w1, text=&quot; &quot;, bg=&quot;black&quot;, fg=&quot;white&quot;, width=5, height=2, command=lambda: make_move(square1))
+square2 = tk.Button(w1, text=&quot; &quot;, bg=&quot;black&quot;, fg=&quot;white&quot;, width=5, height=2, command=lambda: make_move(square2))
+square3 = tk.Button(w1, text=&quot; &quot;, bg=&quot;black&quot;, fg=&quot;white&quot;, width=5, height=2, command=lambda: make_move(square3))
+square4 = tk.Button(w1, text=&quot; &quot;, bg=&quot;black&quot;, fg=&quot;white&quot;, width=5, height=2, command=lambda: make_move(square4))
+square5 = tk.Button(w1, text=&quot; &quot;, bg=&quot;black&quot;, fg=&quot;white&quot;, width=5, height=2, command=lambda: make_move(square5))
+square6 = tk.Button(w1, text=&quot; &quot;, bg=&quot;black&quot;, fg=&quot;white&quot;, width=5, height=2, command=lambda: make_move(square6))
+square7 = tk.Button(w1, text=&quot; &quot;, bg=&quot;black&quot;, fg=&quot;white&quot;, width=5, height=2, command=lambda: make_move(square7))
+square8 = tk.Button(w1, text=&quot; &quot;, bg=&quot;black&quot;, fg=&quot;white&quot;, width=5, height=2, command=lambda: make_move(square8))
+square9 = tk.Button(w1, text=&quot; &quot;, bg=&quot;black&quot;, fg=&quot;white&quot;, width=5, height=2, command=lambda: make_move(square9))
+square1.grid(row=1, column=0, padx=5, pady=5)
+square2.grid(row=1, column=1, padx=5, pady=5)
+square3.grid(row=1, column=2, padx=5, pady=5)
+square4.grid(row=2, column=0, padx=5, pady=5)
+square5.grid(row=2, column=1, padx=5, pady=5)
+square6.grid(row=2, column=2, padx=5, pady=5)
+square7.grid(row=3, column=0, padx=5, pady=5)
+square8.grid(row=3, column=1, padx=5, pady=5)
+square9.grid(row=3, column=2, padx=5, pady=5)
+thing = tk.Label(w1, text=&quot;keep playing&quot;, fg=&quot;yellow&quot;, bg=&quot;black&quot;)
+thing.grid(row=4, columnspan=3, pady=20, padx=20)
+
+w.mainloop()</code></pre>
+</div>
+<script>
+document.getElementById('c').onclick=function(){var b=this,t=document.getElementById('code').textContent;
+function ok(){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy code'},1500)}
+try{navigator.clipboard.writeText(t).then(ok,fb)}catch(e){fb()}
+function fb(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){}a.remove()}};
+</script></body></html>
